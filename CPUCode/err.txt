@@ -1,0 +1,104 @@
+make -C ../RunRules/DFE maxfiles/Vectors.max
+make[1]: Entering directory `/home/a1308699/projects/Assignment1/RunRules/DFE'
+
+MaxCompiler Project Admin Tool Version 2015.2.00001
+ Copyright Maxeler Technologies 2010 - 2015. All rights reserved.
+
+Handler version 2
+Updating RunRule dependent Makefiles for RunRule 'DFE'
+	Updating: DFE
+Found makefiles: 1
+	Updated: DFE
+make -f Makefile.rules maxfiles/Vectors.max
+make[2]: Entering directory `/home/a1308699/projects/Assignment1/RunRules/DFE'
+test -f maxfiles/Vectors.max || env  MAX_BUILDPARAMS=" DFEModel=VECTIS  target=DFE  maxFileName=Vectors MPPREndCT='4' "  ant -v -f Vectors.xml
+Apache Ant version 1.7.1 compiled on August 24 2010
+Buildfile: Vectors.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+parsing buildfile /home/a1308699/projects/Assignment1/RunRules/DFE/Vectors.xml with URI = file:/home/a1308699/projects/Assignment1/RunRules/DFE/Vectors.xml
+Project base dir set to: /home/a1308699/projects/Assignment1/EngineCode
+[antlib:org.apache.tools.ant] Could not load definitions from resource org/apache/tools/ant/antlib.xml. It could not be found.
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Property "env.CLASSPATH" has not been set
+Property "env.MAXCOMPILERNETDIR" has not been set
+Property "EnvClassPath" has not been set
+Property "maxcompilernetdirpath" has not been set
+Build sequence for target(s) `all' is [build, run, runresult, all]
+Complete build sequence is [build, run, runresult, all, help, clean, jar, ]
+
+build:
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.38.x86_64/jre
+Detected OS: Linux
+      [ant] calling target(s) [default] in build file /home/a1308699/projects/Assignment1/RunRules/DFE/Vectors_Build.xml
+parsing buildfile /home/a1308699/projects/Assignment1/RunRules/DFE/Vectors_Build.xml with URI = file:/home/a1308699/projects/Assignment1/RunRules/DFE/Vectors_Build.xml
+Project base dir set to: /home/a1308699/projects/Assignment1/EngineCode
+ [property] Loading Environment env.
+Property "-*-command-variables-*-" has not been set
+Property "env.MAXCOMPILERJCP" has not been set
+Property "env.CLASSPATH" has not been set
+Property "env.MAXCOMPILERNETDIR" has not been set
+Property "EnvClassPath" has not been set
+Property "maxcompilernetdirpath" has not been set
+Property "finalclasspath" has not been set
+      [ant] Entering /home/a1308699/projects/Assignment1/RunRules/DFE/Vectors_Build.xml...
+Build sequence for target(s) `all' is [clean, build, all]
+Complete build sequence is [clean, build, all, ]
+
+clean:
+   [delete] Deleting directory /home/a1308699/projects/Assignment1/RunRules/DFE/dist
+   [delete] Deleting /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin/vectors/VectorsManager.class
+   [delete] Deleting directory /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin/vectors
+   [delete] Deleting directory /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin
+   [delete] Deleting directory /home/a1308699/projects/Assignment1/RunRules/DFE/dist
+
+build:
+    [mkdir] Created dir: /home/a1308699/projects/Assignment1/RunRules/DFE/dist
+    [mkdir] Created dir: /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin
+     [copy] No sources found.
+[maxjcompiler] 
+[maxjcompiler] 
+[maxjcompiler] Compiling to folder /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin
+[maxjcompiler] 
+[maxjcompiler] Compiling files and folders:
+[maxjcompiler] /home/a1308699/projects/Assignment1/EngineCode/src
+[maxjcompiler] 
+[maxjcompiler] Compiler options:
+[maxjcompiler] -noExit
+[maxjcompiler] -classpath
+[maxjcompiler] /opt/maxcompiler/lib/MaxCompiler.jar:/home/a1308699/projects/Assignment1/EngineCode/${EnvClassPath}
+[maxjcompiler] -d
+[maxjcompiler] /home/a1308699/projects/Assignment1/RunRules/DFE/dist/bin
+[maxjcompiler] incorrect classpath: /home/a1308699/projects/Assignment1/EngineCode/${EnvClassPath}
+[maxjcompiler] ----------
+[maxjcompiler] 1. ERROR in /home/a1308699/projects/Assignment1/EngineCode/src/vectors/VectorsKernel.maxj (at line 16)
+[maxjcompiler] 	static final DFEComplexType complexType = new DFEComplexType(doubleType); 
+[maxjcompiler] 	                                                             ^^^^^^^^^^
+[maxjcompiler] doubleType cannot be resolved to a variable
+[maxjcompiler] ----------
+[maxjcompiler] 2. ERROR in /home/a1308699/projects/Assignment1/EngineCode/src/vectors/VectorsKernel.maxj (at line 76)
+[maxjcompiler] 	imag[0][i] = constant.var(doubleType, 0);
+[maxjcompiler] 	                          ^^^^^^^^^^
+[maxjcompiler] doubleType cannot be resolved to a variable
+[maxjcompiler] ----------
+[maxjcompiler] 3. ERROR in /home/a1308699/projects/Assignment1/EngineCode/src/vectors/VectorsKernel.maxj (at line 76)
+[maxjcompiler] 	imag[0][i] = constant.var(doubleType, 0);
+[maxjcompiler] 	                          ^^^^^^^^^^
+[maxjcompiler] doubleType cannot be resolved or is not a field
+[maxjcompiler] ----------
+[maxjcompiler] 4. ERROR in /home/a1308699/projects/Assignment1/EngineCode/src/vectors/VectorsKernel.maxj (at line 78)
+[maxjcompiler] 	imag2[0][i] = constant.var(doubleType, 0);
+[maxjcompiler] 	                           ^^^^^^^^^^
+[maxjcompiler] doubleType cannot be resolved to a variable
+[maxjcompiler] ----------
+[maxjcompiler] 5. ERROR in /home/a1308699/projects/Assignment1/EngineCode/src/vectors/VectorsKernel.maxj (at line 78)
+[maxjcompiler] 	imag2[0][i] = constant.var(doubleType, 0);
+[maxjcompiler] 	                           ^^^^^^^^^^
+[maxjcompiler] doubleType cannot be resolved or is not a field
+[maxjcompiler] ----------
+[maxjcompiler] 5 problems (5 errors)
+      [ant] Exiting /home/a1308699/projects/Assignment1/RunRules/DFE/Vectors_Build.xml.
+make[2]: Leaving directory `/home/a1308699/projects/Assignment1/RunRules/DFE'
+make[1]: Leaving directory `/home/a1308699/projects/Assignment1/RunRules/DFE'

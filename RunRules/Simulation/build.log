@@ -1,0 +1,75 @@
+Tue 11:05: ########################################## 
+Tue 11:05: Compiling.
+Tue 11:05: ########################################## 
+
+Tue 11:05: MaxCompiler version: 2017.2.1.
+Tue 11:05: Build Simulation run rule for AdditionSubstraction_Stream start time: Tue Jan 16 11:05:14 PST 2018.
+Tue 11:05: Project location: /home/demo/workspace/tensors/AdditionSubstraction_Stream.
+Tue 11:05: Detailed build log: /home/demo/workspace/tensors/AdditionSubstraction_Stream/RunRules/Simulation/build.log.
+
+Tue 11:05: Compiling Engine Code.
+Tue 11:05: Engine building skipped (no changes on .max files).
+Tue 11:05: Compiling CPU Code.
+Tue 11:05: Run CPU project make files updating
+Tue 11:05: Executing command:
+Tue 11:05: java -jar /opt/maxeler/maxcompiler/lib/MaxIDE/projectAdmin.jar -u /home/demo/workspace/tensors/AdditionSubstraction_Stream Simulation 
+Tue 11:05: Command output:
+
+Tue 11:05: MaxCompiler Project Admin Tool Version 2016.1.00001
+Tue 11:05:  Copyright Maxeler Technologies 2010 - 2016. All rights reserved.
+
+Tue 11:05: Handler version 2
+Tue 11:05: Updating RunRule dependent Makefiles for RunRule 'Simulation'
+Tue 11:05: 	Updating: Simulation
+Tue 11:05: Found makefiles: 1
+Tue 11:05: 	Updated: Simulation
+Tue 11:05: Run CPU make.
+Tue 11:05: make RUNRULE=Simulation 
+Tue 11:05: Command output:
+Tue 11:05: make -f Makefile.rules build
+Tue 11:05: make[1]: Entering directory `/home/demo/workspace/tensors/AdditionSubstraction_Stream/CPUCode'
+Tue 11:05: set -e; rm -f ../RunRules/Simulation/objects/c/VectorsCpuCode.d ;                                                             \
+Tue 11:05: 	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxeler/maxcompiler/include/slic'  -Wno-error VectorsCpuCode.c > ../RunRules/Simulation/objects/c/VectorsCpuCode.d.$$ ;                                 \
+Tue 11:05:       sed 's,\(VectorsCpuCode\)\.o[ :]*,../RunRules/Simulation/objects/c/\1.o ../RunRules/Simulation/objects/c/VectorsCpuCode.d : ,g' < ../RunRules/Simulation/objects/c/VectorsCpuCode.d.$$ > ../RunRules/Simulation/objects/c/VectorsCpuCode.d; \
+Tue 11:05:       rm -f ../RunRules/Simulation/objects/c/VectorsCpuCode.d.$$
+Tue 11:05: make[1]: Leaving directory `/home/demo/workspace/tensors/AdditionSubstraction_Stream/CPUCode'
+Tue 11:05: make[1]: Entering directory `/home/demo/workspace/tensors/AdditionSubstraction_Stream/CPUCode'
+Tue 11:05: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxeler/maxcompiler/include/slic'  -c VectorsCpuCode.c -o ../RunRules/Simulation/objects/c/VectorsCpuCode.o
+Tue 11:05: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/Simulation/include  -I '/opt/maxeler/maxcompiler/include/slic'  -o ../RunRules/Simulation/binaries/Vectors ../RunRules/Simulation/objects/maxfiles/slic_Vectors.o ../RunRules/Simulation/objects/c/VectorsCpuCode.o -g -O3  -L '/opt/maxeler/maxcompiler/lib' -lslic -L '/opt/maxeler/maxcompiler/lib/maxeleros-sim/lib' -lmaxeleros -lpthread -lm -lrt 
+Tue 11:05: make[1]: Leaving directory `/home/demo/workspace/tensors/AdditionSubstraction_Stream/CPUCode'
+Tue 11:05: Build completed: Tue Jan 16 11:05:15 PST 2018
+
+
+Tue 11:05: ########################################## 
+Tue 11:05: Running
+Tue 11:05: ########################################## 
+Tue 11:05: Executing command:
+Tue 11:05: '/home/demo/workspace/tensors/AdditionSubstraction_Stream/RunRules/Simulation/binaries/Vectors' 
+Tue 11:05: Command output:
+Tue 11:05: =================
+Tue 11:05: Addition stream
+Tue 11:05: Precision: 64
+Tue 11:05: Matrix size: 4
+Tue 11:05: =================
+Tue 11:05: Initializing...
+Tue 11:05: Running CPU.
+Tue 11:05: Time CPU 1 iterations: 0.000000
+Tue 11:05: Running DFE.
+Tue 11:05: Time DFE 1 iterations: 0.000000
+Tue 11:05: Verifying...
+Tue 11:05: Test passed OK!
+Tue 11:05: Initializing...
+Tue 11:05: Running CPU.
+Tue 11:05: Time CPU 10 iterations: 0.000000
+Tue 11:05: Running DFE.
+Tue 11:05: Time DFE 10 iterations: 0.000000
+Tue 11:05: Verifying...
+Tue 11:05: Test passed OK!
+Tue 11:05: Initializing...
+Tue 11:05: Running CPU.
+Tue 11:05: Time CPU 100 iterations: 0.000000
+Tue 11:05: Running DFE.
+Tue 11:05: Time DFE 100 iterations: 0.000000
+Tue 11:05: Verifying...
+Tue 11:05: Test passed OK!
+Tue 11:05: Process terminated with exit code 0.

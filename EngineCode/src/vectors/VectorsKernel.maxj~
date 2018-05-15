@@ -1,0 +1,113 @@
+package vectors;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEVar;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEComplex;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEComplexType;
+
+
+class VectorsKernel extends Kernel {
+
+	static final DFEType floatType=dfeFloat(8,24);
+	static final DFEComplexType complexType = new DFEComplexType(doubleType); 
+
+	public DFEVector<DFEComplex> doFFT(DFEVar[][] real, DFEVar[][] imag, int n, int log_n) {
+
+		for (int i=1, log_i=0; i < n; i *= 2, log_i++) {
+			for (int k = 0; k < i; k++) {
+				float w_real = (float) Math.cos(-2 * Math.PI * k / (i * 2));
+				float w_imag = (float) Math.sin(-2 * Math.PI * k / (i * 2));
+
+				for (int j = 0; j < n; j += i * 2) {
+					//signal 1
+					DFEVar temp_real =
+						real[log_i][j + k + i] * w_real - imag[log_i][j + k + i] * w_imag;
+					DFEVar temp_imag =
+						real[log_i][j + k + i] * w_imag + imag[log_i][j + k + i] * w_real;
+
+					real[log_i + 1][j + k + i] = real[log_i][j + k] - temp_real;
+					imag[log_i + 1][j + k + i] = imag[log_i][j + k] - temp_imag;
+
+					real[log_i + 1][j + k] = real[log_i][j + k] + temp_real;
+					imag[log_i + 1][j + k] = imag[log_i][j + k] + temp_imag;
+
+				}
+			}
+		}
+
+		DFEVectorType<DFEComplex> vectorTypeComplex = new DFEVectorType<DFEComplex>(complexType, n);
+		DFEVector<DFEComplex> fftOut1 = vectorTypeComplex.newInstance(this);
+	
+		for (int i = 0; i < n; i++) {
+			fftOut1[i].setReal(real[log_n][i]);
+			fftOut1[i].setImaginary(imag[log_n][i]);
+		}
+
+		return fftOut1;
+
+	}
+
+	VectorsKernel(KernelParameters parameters, int n) {
+		super(parameters);
+
+		DFEVectorType<DFEVar> vectorType = new DFEVectorType<DFEVar>(floatType, n);
+		DFEVectorType<DFEComplex> vectorTypeComplex = new DFEVectorType<DFEComplex>(complexType, n);
+
+		// Input
+		DFEVector<DFEVar> inVector1 = io.input("inVector1", vectorType);
+		DFEVector<DFEVar> inVector2 = io.input("inVector2", vectorType);
+	    
+		int log_n = Integer.numberOfTrailingZeros(n);
+
+		DFEVar[][] real = new DFEVar[log_n + 1][n];
+		DFEVar[][] imag = new DFEVar[log_n + 1][n];
+		DFEVar[][] real2 = new DFEVar[log_n + 1][n];
+		DFEVar[][] imag2 = new DFEVar[log_n + 1][n];
+
+		//Bitreversing
+		for (int i = 0; i < n; i++) {
+			int j = Integer.reverse(i) >>> (32 - log_n);
+
+			real[0][i] = inVector1[j];
+			imag[0][i] = constant.var(doubleType, 0);
+			real2[0][i] = inVector2[j];
+			imag2[0][i] = constant.var(doubleType, 0);
+		}
+
+		//FFT for inVector1 and inVector2
+		DFEVector<DFEComplex> fftOut1 = doFFT(real, imag, n, log_n);
+		DFEVector<DFEComplex> fftOut2 = doFFT(real2, imag2, n, log_n);
+		DFEVector<DFEComplex> multipliedVector = vectorTypeComplex.newInstance(this);
+
+		for (int i = 0; i < n; i++) multipliedVector[i] <== fftOut2[i] * fftOut1[i];
+
+		DFEVar[][] realIfft = new DFEVar[log_n + 1][n];
+		DFEVar[][] imagIfft = new DFEVar[log_n + 1][n];
+
+		//Reversing
+		for (int i = 0; i < n; i++) {
+			int j = Integer.reverse(i) >>> (32 - log_n);
+			imagIfft[0][i] = multipliedVector[j].getReal();
+			realIfft[0][i] = multipliedVector[j].getImaginary();
+		}
+
+		//IFFT
+		DFEVector<DFEComplex> result = doFFT(realIfft, imagIfft, n, log_n);
+
+		DFEVector<DFEVar> out_real =
+			vectorType.newInstance(this);
+
+		//Swapping + normalising
+		for (int i = 0; i < n; i++) {
+			out_real[i] <== result[i].getImaginary()/n;
+		}
+
+		//Output
+		io.output("out_real", out_real, vectorType);
+	}
+
+}
